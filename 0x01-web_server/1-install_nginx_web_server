@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
-# installing nginx on web-01 server per given requirements
+# Installs nginx
 sudo apt-get -y update
+sudo apt-get -y upgrade
 sudo apt-get -y install nginx
-echo "Hello World" | sudo tee /var/www/html/index.html
 sudo service nginx start
+echo 'Hello World!' | sudo tee /var/www/html/index.html
