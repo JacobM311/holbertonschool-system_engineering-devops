@@ -1,0 +1,24 @@
+#!/bin/bash
+
+# Check if the script received the required argument (password)
+if [ "$#" -ne 1 ]; then
+    echo "Usage: $0 <mysql_root_password>"
+    exit 1
+fi
+
+# Set variables
+PASSWORD=$1
+DATE=$(date +%d-%m-%Y)
+BACKUP_FILE="backup.sql"
+ARCHIVE_FILE="${DATE}.tar.gz"
+
+# Dump all MySQL databases to backup.sql
+mysqldump -u root -p"${PASSWORD}" --all-databases > "${BACKUP_FILE}"
+
+# Compress the backup.sql to day-month-year.tar.gz
+tar -czvf "${ARCHIVE_FILE}" "${BACKUP_FILE}"
+
+# Remove the backup.sql file
+rm "${BACKUP_FILE}"
+
+echo "Backup and compression complete. Archive: ${ARCHIVE_FILE}"
