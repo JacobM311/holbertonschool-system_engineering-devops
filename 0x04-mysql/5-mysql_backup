@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+#im describing what this file does
 
 # Check if the script received the required argument (password)
 if [ "$#" -ne 1 ]; then
